@@ -1,3 +1,4 @@
+import os
 import osquery
 
 from phi.assistant import Assistant
@@ -18,13 +19,47 @@ def setup_assistant():
         Args:
             sql_query (str): An sql query executed with osquery.
         Returns:
-            str: Respose from osquery.
+            str: Response from osquery.
         """
         # results = instance.client.query(".tables")
         return str(instance.client.query(sql_query).__dict__)
     
+    def list_osquery_tables() -> dict:
+        """Use this function to find all available tables in osquery.
+
+        Returns:
+            str: List of tables in osquery.
+        """
+        return str(instance.client.query(".tables"))
+    
+    def list_log_files():
+        """List all log files in /var/log.
+        
+        Returns:
+            list: List of log files in /var/log.
+        """
+        log_dir = "/var/log/"
+        return str([f for f in os.listdir(log_dir) if os.path.isfile(os.path.join(log_dir, f))])
+    
+    def read_file_content(file_path):
+        """Read the content of a file.
+
+        Args:
+            file_path (str): The path to the file.
+
+        Returns:
+            str: The content of the file.
+        """
+        with open(file_path, 'r') as file:
+            return file.read()
+    
     assistant = Assistant(
-        tools=[osquery_sql_query], 
+        tools=[
+            list_osquery_tables, 
+            osquery_sql_query, 
+            list_log_files, 
+            read_file_content
+        ], 
         show_tool_calls=False, 
         add_chat_history_to_messages=True,
         add_datetime_to_instructions=True
@@ -48,5 +83,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # Execute the main script
     main()
