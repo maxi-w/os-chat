@@ -1,4 +1,5 @@
 from phi.assistant import Assistant
+from phi.llm.openai import OpenAIChat
 from prompt_toolkit import prompt
 from .tools import (
     list_osquery_tables, 
@@ -9,8 +10,13 @@ from .tools import (
 )
 
 
-def setup_assistant():
+def setup_assistant(openai_model: str = "gpt-3.5-turbo"):
     assistant = Assistant(
+        llm=OpenAIChat(
+            model=openai_model,
+            max_tokens=1024,
+            temperature=0.9,
+        ),
         tools=[
             list_osquery_tables, 
             osquery_sql_query, 
