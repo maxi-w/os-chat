@@ -9,6 +9,8 @@ def main():
         ("What is my CPU model?", "i5-12400F"),
         ("What is my operating System?", "Ubuntu"),
         ("What GPU do I have?", "NVIDIA GeForce RTX 3060"),
+        ("How much VRAM does my GPU have?", "12"),
+        ("Which CUDA version is installed?", "12.2"),
     ]
 
     success_runs = 0

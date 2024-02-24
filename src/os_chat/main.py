@@ -6,7 +6,8 @@ from .tools import (
     osquery_sql_query, 
     list_log_files, 
     read_file_content, 
-    get_nvidia_smi_output
+    get_nvidia_smi_output,
+    get_ip_address
 )
 
 
@@ -23,6 +24,7 @@ def setup_assistant(openai_model: str = "gpt-3.5-turbo"):
             list_log_files, 
             read_file_content,
             get_nvidia_smi_output,
+            get_ip_address,
         ], 
         show_tool_calls=False, 
         add_chat_history_to_messages=False,

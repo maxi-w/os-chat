@@ -1,4 +1,5 @@
 import os
+import socket
 import osquery
 import subprocess
 
@@ -57,4 +58,13 @@ def get_nvidia_smi_output() -> str:
         str: The output of the nvidia-smi command.
     """
     result = subprocess.run(['nvidia-smi'], stdout=subprocess.PIPE)
+    return result.stdout.decode('utf-8')
+
+def get_ip_address():
+    """Get network interfaces and their IP addresses.
+    
+    Returns:
+        str: Info about network interfaces and their IP addresses.
+    """
+    result = subprocess.run(['ifconfig'], stdout=subprocess.PIPE)
     return result.stdout.decode('utf-8')
