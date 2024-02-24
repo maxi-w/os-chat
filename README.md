@@ -1,4 +1,6 @@
-# os-chat
+# os-chat: ⌨️ Chat with your Computer
+
+**os-chat** allows you to chat with your computer, retrieving all kind of information from log files, CLI commands and an osquery interface.
 
 ## ✨ Getting Started
 
