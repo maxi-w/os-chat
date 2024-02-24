@@ -1,5 +1,6 @@
 import os
 import osquery
+import subprocess
 
 from phi.assistant import Assistant
 from prompt_toolkit import prompt
@@ -13,7 +14,7 @@ def setup_assistant():
     instance = osquery.SpawnInstance()
     instance.open()
 
-    def osquery_sql_query(sql_query: str) -> dict:
+    def osquery_sql_query(sql_query: str) -> str:
         """Use this function to call osquery SQL queries.
 
         Args:
@@ -21,10 +22,9 @@ def setup_assistant():
         Returns:
             str: Response from osquery.
         """
-        # results = instance.client.query(".tables")
         return str(instance.client.query(sql_query).__dict__)
     
-    def list_osquery_tables() -> dict:
+    def list_osquery_tables() -> str:
         """Use this function to find all available tables in osquery.
 
         Returns:
@@ -32,7 +32,7 @@ def setup_assistant():
         """
         return str(instance.client.query(".tables"))
     
-    def list_log_files():
+    def list_log_files() -> str:
         """List all log files in /var/log.
         
         Returns:
@@ -41,7 +41,7 @@ def setup_assistant():
         log_dir = "/var/log/"
         return str([f for f in os.listdir(log_dir) if os.path.isfile(os.path.join(log_dir, f))])
     
-    def read_file_content(file_path):
+    def read_file_content(file_path)  -> str:
         """Read the content of a file.
 
         Args:
@@ -52,13 +52,23 @@ def setup_assistant():
         """
         with open(file_path, 'r') as file:
             return file.read()
+
+    def get_nvidia_smi_output() -> str:
+        """Execute the nvidia-smi command and return GPU info.
+
+        Returns:
+            str: The output of the nvidia-smi command.
+        """
+        result = subprocess.run(['nvidia-smi'], stdout=subprocess.PIPE)
+        return result.stdout.decode('utf-8')
     
     assistant = Assistant(
         tools=[
             list_osquery_tables, 
             osquery_sql_query, 
             list_log_files, 
-            read_file_content
+            read_file_content,
+            get_nvidia_smi_output,
         ], 
         show_tool_calls=False, 
         add_chat_history_to_messages=True,
