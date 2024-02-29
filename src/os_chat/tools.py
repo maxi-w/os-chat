@@ -1,5 +1,4 @@
 import os
-import socket
 import osquery
 import subprocess
 
@@ -51,20 +50,18 @@ def read_file_content(file_path)  -> str:
         return file.read()
 
 
-def get_nvidia_smi_output() -> str:
-    """Execute the nvidia-smi command and return GPU info.
+def run_shell_command(command: str) -> str:
+    """Run a command in the shell. Legal commands are ls, whoami, uname -a, lscpu, nvidia-smi.
+
+    Args:
+        command (str): The command to run.
 
     Returns:
-        str: The output of the nvidia-smi command.
+        str: The output of the command.
     """
-    result = subprocess.run(['nvidia-smi'], stdout=subprocess.PIPE)
-    return result.stdout.decode('utf-8')
-
-def get_ip_address():
-    """Get network interfaces and their IP addresses.
-    
-    Returns:
-        str: Info about network interfaces and their IP addresses.
-    """
-    result = subprocess.run(['ifconfig'], stdout=subprocess.PIPE)
-    return result.stdout.decode('utf-8')
+    print(f"Running command: {command}")
+    legal_commands = ["ls", "whoami", "uname -a", "lscpu", "nvidia-smi"]
+    if command not in legal_commands:
+        return f"Command not allowed. Use one of: {legal_commands}"
+    result = subprocess.run(command.split(" "), stdout=subprocess.PIPE)
+    return result.stdout.decode("utf-8")
