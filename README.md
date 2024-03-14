@@ -35,9 +35,14 @@ pdm run start
 
 The goal of the benchmark is to measure the ability of different LLMs to retriev the relevant information from the available interfaces.
 
-| Model Name | Retrieval Accuracy |
-| -------- | -------- |
-| gpt-3.5-turbo   | 1.0 |
+| Model Name | Model Type | Retrieval Accuracy
+| -------- | -------- | -------- |
+| gpt-3.5-turbo  | API   | 1.0 |
+| llama2 7b      | local | 0.0 |
+| llama2 7b-chat | local | 0.0 |
+| openhermes     | local | 0.0 |
+
+Currently local LLMs are not able to use the interface correctly and therefore retriev no information.
 
 To run the benchmark use the following pdm script:
 

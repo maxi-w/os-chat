@@ -10,6 +10,7 @@ dependencies = [
     "osquery==3.0.7",
     "phidata==2.3.35",
     "prompt-toolkit==3.0.43",
+    "ollama>=0.1.7",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
