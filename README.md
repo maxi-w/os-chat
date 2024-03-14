@@ -53,3 +53,7 @@ pdm run benchmark
 ```
 
 **Note:** Currently the benchmark targets are hardcoded for one specific test system and need to be adapted to run on any other system.
+
+## More Examples
+
+![os-chat use example](./assets/os-chat-example-2.png)
