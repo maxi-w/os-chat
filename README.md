@@ -2,6 +2,8 @@
 
 **os-chat** allows you to chat with your computer, retrieving all kind of information from log files, CLI commands and an osquery interface.
 
+![os-chat use example](./assets/os-chat-example.png)
+
 ## ✨ Getting Started
 
 ### ☑️ Step 1: Prerequisites
