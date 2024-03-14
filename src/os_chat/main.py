@@ -13,7 +13,7 @@ from .tools import (
 
 
 def select_model(model_mame: str) -> LLM:
-    if model_mame in ["llama2", "llama2:7b-chat", "openhermes"]:
+    if model_mame in ["llama2", "llama2:7b-chat", "openhermes", "nous-hermes2"]:
         return Ollama(model=model_mame)
     elif model_mame == "gpt-3.5-turbo":
         return OpenAIChat(
@@ -38,7 +38,7 @@ def setup_assistant(model_name: str = "gpt-3.5-turbo"):
         show_tool_calls=False, 
         add_chat_history_to_messages=False,
         add_datetime_to_instructions=True,
-        debug_mode=False,
+        debug_mode=True,
     )
     return assistant
 

@@ -40,6 +40,7 @@ The goal of the benchmark is to measure the ability of different LLMs to retriev
 | Model Name | Model Type | Retrieval Accuracy
 | -------- | -------- | -------- |
 | gpt-3.5-turbo  | API   | 1.0 |
+| nous-hermes2   | local | 0.2 |
 | llama2 7b      | local | 0.0 |
 | llama2 7b-chat | local | 0.0 |
 | openhermes     | local | 0.0 |
