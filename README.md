@@ -57,3 +57,5 @@ pdm run benchmark
 ## More Examples
 
 ![os-chat use example](./assets/os-chat-example-2.png)
+
+![os-chat use example](./assets/os-chat-example-3.png)
